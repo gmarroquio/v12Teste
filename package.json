@@ -10,8 +10,7 @@
     }
   },
   "scripts": {
-    "dev": "nodemon src/server.ts",
-    "test": "jest"
+    "dev": "nodemon src/server.ts"
   },
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",
