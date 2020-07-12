@@ -1,15 +1,19 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-type Vehicle = Document & {};
+type Vehicle = Document & {
+  owner: string;
+  licensePlate: string;
+  renavam: string;
+};
 
 const VehicleSchema = new Schema(
   {
     owner: {
       type: String,
-      trim: true,
       required: true,
+      trim: true,
     },
-    license: { type: String, trim: true, required: true, unique: true },
+    licensePlate: { type: String, trim: true, required: true, unique: true },
     renavam: { type: String, trim: true, required: true, unique: true },
   },
   { timestamps: true }

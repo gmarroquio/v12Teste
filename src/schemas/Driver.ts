@@ -1,6 +1,14 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import * as mongoose from 'mongoose';
+import { Document, Schema } from 'mongoose';
 
-type Driver = Document & {};
+type Driver = Document & {
+  name: string;
+  lastName: string;
+  cpf: string;
+  birthday: Date;
+  active: boolean;
+  vehicles?: string[];
+};
 
 const DriverSchema = new Schema(
   {
@@ -10,7 +18,14 @@ const DriverSchema = new Schema(
       required: true,
     },
     lastName: { type: String, trim: true, required: true },
-    cpf: { type: String, trim: true, required: true, unique: true },
+    cpf: {
+      type: String,
+      trim: true,
+      required: true,
+      unique: true,
+      minlength: 11,
+      maxlength: 11,
+    },
     birthday: { type: Date, trim: true, required: true },
     active: {
       type: Boolean,
