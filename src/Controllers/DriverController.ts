@@ -8,7 +8,10 @@ class DriverController {
   }
 
   async show(request: Request, response: Response): Promise<Response<any>> {
-    const driver = await Driver.find({ cpf: request.params.id });
+    const driver = await Driver.findOne({ cpf: request.params.id });
+    if (!driver) {
+      return response.status(401).json({ error: 'CPF nao cadastrado' });
+    }
     return response.json(driver);
   }
 
@@ -52,10 +55,10 @@ class DriverController {
 
     const formattedNewBirthday = newBirthday
       ? new Date(
-          Number(newBirthday.split('/')[2]),
-          Number(newBirthday.split('/')[1]) - 1,
-          Number(newBirthday.split('/')[0])
-        )
+        Number(newBirthday.split('/')[2]),
+        Number(newBirthday.split('/')[1]) - 1,
+        Number(newBirthday.split('/')[0])
+      )
       : driver.birthday;
 
     const newDriver = {
